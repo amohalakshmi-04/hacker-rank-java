@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.nextLine();
+        // Write your code here.
+         s = s.trim();
+
+        // 2. Handle the edge case: if the string is empty after trimming
+        if (s.length() == 0) {
+            System.out.println(0);
+            return;
+        }
+
+        // 3. Split the string using Regex
+        // [^A-Za-z]+ means "split by one or more non-alphabetic characters"
+        String[] tokens = s.split("[^A-Za-z]+");
+
+        // 4. Print the total number of tokens
+        System.out.println(tokens.length);
+
+        // 5. Print each token on a new line
+        for (String word : tokens) {
+            System.out.println(word);
+        scan.close();
+    }
+    }
+}
