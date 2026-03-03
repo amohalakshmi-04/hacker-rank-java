@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        
+        // Read the two large numbers as BigIntegers
+        BigInteger a = new BigInteger(sc.next());
+        BigInteger b = new BigInteger(sc.next());
+        
+        // Perform addition and multiplication
+        BigInteger sum = a.add(b);
+        BigInteger product = a.multiply(b);
+        
+        // Print the results on separate lines
+        System.out.println(sum);
+        System.out.println(product);
+        
+        sc.close();
+    }
+}
