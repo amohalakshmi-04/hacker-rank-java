@@ -1,0 +1,43 @@
+port java.util.Scanner;
+
+public class Solution {
+
+    static boolean isAnagram(String a, String b) {
+        
+        // Complete the function
+         if (a.length() != b.length()) return false;
+        
+        // 2. Make both strings lowercase for case-insensitivity
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+        
+        // 3. Create a frequency array for 26 letters
+        int[] frequencies = new int[26];
+        
+        // 4. Increment for string 'a', decrement for string 'b'
+        for (int i = 0; i < a.length(); i++) {
+            frequencies[a.charAt(i) - 'a']++;
+            frequencies[b.charAt(i) - 'a']--;
+        }
+        
+        // 5. If it's an anagram, all frequencies should be 0
+        for (int count : frequencies) {
+            if (count != 0) return false;
+        }
+        
+        return true;
+    }
+
+
+        // Complete the function
+
+    public static void main(String[] args) {
+    
+        Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        scan.close();
+        boolean ret = isAnagram(a, b);
+        System.out.println( (ret) ? "Anagrams" : "Not Anagrams" );
+    }
+}
