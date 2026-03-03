@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        int n = sc.nextInt();
+        ArrayList<ArrayList<Integer>> lines = new ArrayList<>();
+        
+        // 2. Read each line and store integers in an inner list
+        for (int i = 0; i < n; i++) {
+            int d = sc.nextInt();
+            ArrayList<Integer> row = new ArrayList<>();
+            for (int j = 0; j < d; j++) {
+                row.add(sc.nextInt());
+            }
+            lines.add(row);
+        }
+        
+        // 3. Process Queries
+        int q = sc.nextInt();
+        for (int i = 0; i < q; i++) {
+            int x = sc.nextInt(); // Line number
+            int y = sc.nextInt(); // Position in line
+            
+            try {
+                // Convert 1-based index to 0-based index
+                // .get(x-1) finds the row, .get(y-1) finds the specific element
+                System.out.println(lines.get(x - 1).get(y - 1));
+            } catch (IndexOutOfBoundsException e) {
+                // If the row doesn't exist or the row isn't long enough
+                System.out.println("ERROR!");
+            }
+        }
+        sc.close();
+    }
+}
