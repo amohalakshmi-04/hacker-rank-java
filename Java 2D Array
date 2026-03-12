@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        List<List<Integer>> arr = new ArrayList<>();
+
+        // Reading the 6x6 input
+        for (int i = 0; i < 6; i++) {
+            String[] arrRowTempItems = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+            List<Integer> arrRowItems = new ArrayList<>();
+
+            for (int j = 0; j < 6; j++) {
+                int arrItem = Integer.parseInt(arrRowTempItems[j]);
+                arrRowItems.add(arrItem);
+            }
+
+            arr.add(arrRowItems);
+        }
+
+        // --- Logic to find the maximum hourglass sum ---
+        
+        int maxSum = Integer.MIN_VALUE; // Handles cases where all sums are negative
+
+        // The outer loops go up to 3 (inclusive) to stay within the 6x6 bounds
+        for (int i = 0; i <= 3; i++) {
+            for (int j = 0; j <= 3; j++) {
+                
+                // Calculate the sum of the current hourglass
+                int currentSum = 
+                    arr.get(i).get(j)   + arr.get(i).get(j+1)   + arr.get(i).get(j+2) + // Top row
+                                          arr.get(i+1).get(j+1) +                       // Middle point
+                    arr.get(i+2).get(j) + arr.get(i+2).get(j+1) + arr.get(i+2).get(j+2);  // Bottom row
+
+                // Update maxSum if the current hourglass is larger
+                if (currentSum > maxSum) {
+                    maxSum = currentSum;
+                }
+            }
+        }
+
+        // Print the result
+        System.out.println(maxSum);
+
+        bufferedReader.close();
+    }
+}
