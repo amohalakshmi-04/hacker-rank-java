@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+
+        BitSet b1 = new BitSet(N);
+        BitSet b2 = new BitSet(N);
+        
+        // Array to easily access bitsets by their index (1 or 2)
+        BitSet[] bitsets = new BitSet[3]; 
+        bitsets[1] = b1;
+        bitsets[2] = b2;
+
+        for (int i = 0; i < M; i++) {
+            String op = sc.next();
+            int p1 = sc.nextInt();
+            int p2 = sc.nextInt();
+
+            switch (op) {
+                case "AND":
+                    bitsets[p1].and(bitsets[p2]);
+                    break;
+                case "OR":
+                    bitsets[p1].or(bitsets[p2]);
+                    break;
+                case "XOR":
+                    bitsets[p1].xor(bitsets[p2]);
+                    break;
+                case "FLIP":
+                    bitsets[p1].flip(p2);
+                    break;
+                case "SET":
+                    bitsets[p1].set(p2);
+                    break;
+            }
+            
+            // Print the count of set bits (cardinality) for both
+            System.out.println(b1.cardinality() + " " + b2.cardinality());
+        }
+        sc.close();
+    }
+}
